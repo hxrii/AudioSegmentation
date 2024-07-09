@@ -8,11 +8,16 @@ audio = AudioSegment.from_wav(audio_file_path)
 
 #GENERATING THE FILE SIZE OF THE AUDIO
 file_size = os.path.getsize(audio_file_path)
-
+#<------------------------------------DEBUG STEP------------------------------------->#
 print(file_size) #returns in bytes. Eg:802kb -> 80256
+#<------------------------------------DEBUG STEP------------------------------------->#
 
+
+#<------------------------------------ADJUST THESE VALUES---------------------------------->#
 ##LIMIT OF EACH SEGMENT 
 max_size = 3000000 #ALMOST 3 MB OUTPUT SEGEMENTS WILL BE GENERATED. 
+#<------------------------------------ADJUST THESE VALUES---------------------------------->#
+
 
 #CALCULATING MINIMUM NUMBER OF SEGMENTS
 #Eg: If FILE_SIZE = 300Kb and MAX_SIZE of segments = 90Kb, Minimum of 4 segments are to be generated.
@@ -34,11 +39,15 @@ print(max_segment_length)
 #<------------------------------------DEBUG STEP------------------------------------->#
 
 
+#<------------------------------------ADJUST THESE VALUES---------------------------------->#
 # TUNING SILENCE DURATION AND THRESHOLD
 # min_silence_len = 100 IMPLIES that a minimum of 100ms of silence is required to 
 # identify that duration as a point of silence
 min_silence_len = 100  # in ms
 silence_thresh = audio.dBFS - 14  
+#<------------------------------------ADJUST THESE VALUES---------------------------------->#
+
+
 
 # DETECT ALL SILENCE POINTS AND STORE IN A 2D ARRAY
 # ARRAY FORMAT IS {start,end} 
@@ -176,3 +185,4 @@ for i in range(0,n):
 
 #END
 print("end")
+
