@@ -3,7 +3,7 @@ import os
 from pydub.silence import split_on_silence, detect_silence
 
 #SELECTING AND LOADING THE AUDIO FILE
-audio_file_path = "audio.wav"  # Replace with path
+audio_file_path = "/home/harikrishnan/Desktop/runModel/segmentAudio/youtu.wav"  # Replace with path
 audio = AudioSegment.from_wav(audio_file_path)
 
 #GENERATING THE FILE SIZE OF THE AUDIO
@@ -15,7 +15,8 @@ print(file_size) #returns in bytes. Eg:802kb -> 80256
 
 #<------------------------------------ADJUST THESE VALUES---------------------------------->#
 #LIMIT OF EACH SEGMENT 
-max_size = 3000000 #ALMOST 3 MB OUTPUT SEGEMENTS WILL BE GENERATED. 
+segment_size_init = 15 #Replace with  SEGMENT size LIMIT in MB
+max_size = segment_size_init * 1000000 #ALMOST 15 MB OUTPUT SEGEMENTS WILL BE GENERATED. 
 #<------------------------------------ADJUST THESE VALUES---------------------------------->#
 
 
@@ -181,7 +182,7 @@ n = len(audio_segments)
 #STORING THE SEGMENTS LOCALLY IN .wav format
 for i in range(0,n):
     print("audio saved ",{i+1})
-    audio_segments[i].export(f"audio{i+1}.wav", format="wav")  #provide export path
+    audio_segments[i].export(f"/home/harikrishnan/Desktop/runModel/segmentAudio/audio{i+1}.wav", format="wav")  
 
 #END
 print("end")
