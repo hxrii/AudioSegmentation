@@ -3,7 +3,7 @@ import os
 from pydub.silence import split_on_silence, detect_silence
 
 #SELECTING AND LOADING THE AUDIO FILE
-audio_file_path = "/home/harikrishnan/Desktop/runModel/segmentAudio/cyber_crime.wav"  # Replace with path
+audio_file_path = "audio.wav"  # Replace with path
 audio = AudioSegment.from_wav(audio_file_path)
 
 #GENERATING THE FILE SIZE OF THE AUDIO
@@ -14,7 +14,7 @@ print(file_size) #returns in bytes. Eg:802kb -> 80256
 
 
 #<------------------------------------ADJUST THESE VALUES---------------------------------->#
-##LIMIT OF EACH SEGMENT 
+#LIMIT OF EACH SEGMENT 
 max_size = 3000000 #ALMOST 3 MB OUTPUT SEGEMENTS WILL BE GENERATED. 
 #<------------------------------------ADJUST THESE VALUES---------------------------------->#
 
@@ -98,7 +98,6 @@ while i<n:
     if curr > max_distance: # CHECKING IF CURRENT SILENCE POINT IS GREATER THAN THE LIMIT DURATION OF THE SEGMENT
 
         # EDGE CASES WHERE "NO" SILENCE POINTS ARE FOUND INSIDE THE SEGMENT'S LIMIT
-
         if i == 0: # First pause is happening after the first segment's duration limit
             print("No pause found before segment 1")
             flag =1
@@ -116,6 +115,7 @@ while i<n:
             #UPDATING THE LIMIT TO NEXT SEGMENT'S LIMIT DURATION
             max_distance = max_distance + max_segment_length
             #CONTINUE THE LOOP 
+            flag = 0
             continue
 
 
@@ -181,7 +181,7 @@ n = len(audio_segments)
 #STORING THE SEGMENTS LOCALLY IN .wav format
 for i in range(0,n):
     print("audio saved ",{i+1})
-    audio_segments[i].export(f"/home/harikrishnan/Desktop/runModel/segmentAudio/audio{i+1}.wav", format="wav")  
+    audio_segments[i].export(f"audio{i+1}.wav", format="wav")  #provide export path
 
 #END
 print("end")
