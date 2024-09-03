@@ -3,7 +3,7 @@ import os
 from pydub.silence import split_on_silence, detect_silence
 
 #SELECTING AND LOADING THE AUDIO FILE
-audio_file_path = "/home/harikrishnan/Desktop/runModel/segmentAudio/youtu.wav"  # Replace with path
+audio_file_path = "./audio.wav"  # Replace with path
 audio = AudioSegment.from_wav(audio_file_path)
 
 #GENERATING THE FILE SIZE OF THE AUDIO
